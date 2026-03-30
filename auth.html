@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish va Ro'yxatdan o'tish | BlackKalpak Barbershop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000 url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1500&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 20px;
+            position: relative;
+        }
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+        }
+
+        .auth-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 35px;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .auth-tab {
+            color: #888;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .auth-form.active {
+            display: flex;
+        }
+
+        .input-group {
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .auth-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        .auth-footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="logo" style="margin-bottom: 30px; display: block; text-align: center;">BlackKalpak</div>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login">Kirisiw</div>
+                <div class="auth-tab" id="tab-register">Dizimnen ótiw</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" placeholder="email@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-gold auth-btn">Kirisiw</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form">
+                <div class="input-group">
+                    <label>A.F.I</label>
+                    <input type="text" id="reg-name" placeholder="Atıńızdı kiritiń" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" placeholder="email@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Telefon raqam</label>
+                    <input type="tel" id="reg-phone" placeholder="+998 90 123 45 67" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" id="reg-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-gold auth-btn">Dizimnen ótiw</button>
+            </form>
+
+            <div class="auth-footer">
+                <p><a href="index.html">Bas betke qaytıw</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabLogin = document.getElementById('tab-login');
+        const tabRegister = document.getElementById('tab-register');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        // Toggle Tabs
+        tabLogin.addEventListener('click', () => {
+            tabLogin.classList.add('active');
+            tabRegister.classList.remove('active');
+            loginForm.classList.add('active');
+            registerForm.classList.remove('active');
+        });
+
+        tabRegister.addEventListener('click', () => {
+            tabRegister.classList.add('active');
+            tabLogin.classList.remove('active');
+            registerForm.classList.add('active');
+            loginForm.classList.remove('active');
+        });
+
+        // Register Logic
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const phone = document.getElementById('reg-phone').value;
+            const password = document.getElementById('reg-password').value;
+
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.find(u => u.email === email)) {
+                alert('Bul email menen paydalanıwshı álle-qashan bar!');
+                return;
+            }
+
+            users.push({ name, email, phone, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Muvaffaqiyatlı dizimnen óttińiz! Endi kirisiwińiz múmkin.');
+            tabLogin.click();
+        });
+
+        // Login Logic
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const card = document.querySelector('.auth-card');
+
+            // Admin Override
+            if (email === 'admin@bar.com' && pass === 'ernazar12345678') {
+                localStorage.setItem('currentUser', JSON.stringify({ name: 'Admin', email, role: 'admin' }));
+                alert('Xosh keldińiz, Admin!');
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            // Normal User
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === pass);
+
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify({ ...user, role: 'user' }));
+                alert('Xosh keldińiz, ' + user.name + '!');
+                window.location.href = 'index.html';
+            } else {
+                // Shake animation on error
+                card.classList.add('shake');
+                card.style.borderColor = '#ff5555';
+                setTimeout(() => {
+                    card.classList.remove('shake');
+                    card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                }, 500);
+                
+                // Show floating error message (optional but better than alert)
+                const errorMsg = document.createElement('div');
+                errorMsg.style.color = '#ff5555';
+                errorMsg.style.fontSize = '12px';
+                errorMsg.style.marginTop = '10px';
+                errorMsg.innerText = 'Email yamasa parol qáte!';
+                if (!loginForm.querySelector('.error-text')) {
+                    errorMsg.className = 'error-text';
+                    loginForm.appendChild(errorMsg);
+                    setTimeout(() => errorMsg.remove(), 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

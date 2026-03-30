@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="qr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackKalpak Barbershop | Premium Erler Sartaroshxanasi</title>
+    <meta name="description" content="Nókistegi premium erler sartaroshxanasi. Sıpatlı shash jasaw hám saqal kútimi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="loader-ring"></div>
+            <div class="preloader-scissors">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="6" cy="6" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                    <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <div class="logo">BlackKalpak</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    <header class="navbar" id="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">BlackKalpak</div>
+                <svg class="scissors-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="6" cy="6" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                    <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <nav class="nav-links">
+                <a href="#about" data-key="nav_about">Biz haqimizda</a>
+                <a href="#services" data-key="nav_services">Xizmatlar</a>
+                <a href="#masters" data-key="nav_masters">Ustalar</a>
+                <a href="#contacts" data-key="nav_contacts">Kontaktlar</a>
+            </nav>
+            <div class="actions">
+                <div id="user-display" style="display: none; align-items: center; gap: 15px;">
+                    <a href="profile.html" id="user-name" style="font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none;"></a>
+                    <button id="noti-btn" class="noti-btn">🔔<span id="noti-badge">0</span></button>
+                    <button id="logout-btn" class="btn btn-outline" style="padding: 6px 12px; font-size: 11px;">Shıǵıw</button>
+                </div>
+                <div id="auth-actions">
+                    <a href="auth.html" class="btn btn-gold" data-key="hero_btn_login">Kirisiw</a>
+                </div>
+                <div class="lang-toggle"><span id="lang-qr" class="active">QR</span> | <span id="lang-ru">RU</span></div>
+            </div>
+            <div class="mobile-menu-btn" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="fade-up" data-key="hero_title">BlackKalpak BARBERSHOP</h1>
+            <p class="fade-up delay-1" data-key="hero_desc">Nókistegi premium dárejedegi erler sartaroshxanasi. Tek professionallar, tek sıpat.</p>
+            <div class="hero-btns fade-up delay-2">
+                <a href="#services" class="btn btn-outline" data-key="hero_btn_services">Xızmetler</a>
+                <a href="#barbados" class="btn btn-outline" data-key="hero_btn_barbados">Barbados</a>
+                <button class="btn btn-gold trigger-booking" data-key="btn_booking">Onlayn jazılıw</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container grid">
+            <div class="about-text">
+                <h2 class="section-title gold" data-key="about_title">Atmosfera va Sifat</h2>
+                <div class="bar-accent"></div>
+                <p data-key="about_desc">BlackKalpak — bu shunchaki sartaroshxona emas, bu erkaklar klubi. Bu yerda siz yuqori darajadagi xizmat, professional ustalar va haqiqiy erkaklar atmosferasidan bahramand bo'lasiz.</p>
+                <div class="about-stats">
+                    <div class="stat-item"><span>1200+</span> <p>Mijozlar</p></div>
+                    <div class="stat-item"><span>5+</span> <p>Ustalar</p></div>
+                </div>
+            </div>
+            <div class="about-images">
+                <div class="img-wrapper main-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1000&auto=format&fit=crop" alt="Barbershop">
+                </div>
+                <div class="img-wrapper sub-img fade-up delay-1">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1000&auto=format&fit=crop" alt="Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section barbados" id="barbados">
+        <div class="container">
+            <h2 class="section-title center white">Barbados Exclusive</h2>
+            <div class="glass-card barbados-content fade-up">
+                <div class="barbados-text">
+                    <h3>Premium Kútim</h3>
+                    <p>Barbados — bul sizdiń sırtqı kórinisińizge jańasha nazar. Biz tek eń sara kosmetika hám texnologiyalardan paydalanamız.</p>
+                    <button class="btn btn-gold trigger-booking">Házir jazılıw</button>
+                </div>
+                <div class="barbados-stat-grid">
+                    <div class="b-stat"><span>10+</span> Jıllıq Tájiriybe</div>
+                    <div class="b-stat"><span>5k+</span> Mámun Mijozler</div>
+                    <div class="b-stat"><span>100%</span> Sıpat Kepilligi</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services bg-dark" id="services">
+        <div class="container">
+            <h2 class="section-title center white" data-key="services_title">Bizdiń Xızmetler</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 data-key="service_1_name">Erler shash jasawı</h3>
+                    <p data-key="service_1_desc">Konkret hám zamanagóy kórinis ushın</p>
+                    <span class="price">150 000 sum</span>
+                </div>
+                <div class="service-card highlighted">
+                    <h3 data-key="service_2_name">Saqal hám murıt kútimi</h3>
+                    <p data-key="service_2_desc">Ideal forma hám kútim</p>
+                    <span class="price">100 000 sum</span>
+                </div>
+                <div class="service-card">
+                    <h3 data-key="service_3_name">Kompleks (Shash + Saqal)</h3>
+                    <p data-key="service_3_desc">Tolıq paket hám arnawlı usınıs</p>
+                    <span class="price">220 000 sum</span>
+                </div>
+                <div class="service-card">
+                    <h3 data-key="service_4_name">Balalar shash jasawı</h3>
+                    <p data-key="service_4_desc">Kishkene miymanlarımız ushın</p>
+                    <span class="price">80 000 sum</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section masters" id="masters">
+        <div class="container">
+            <h2 class="section-title center gold" data-key="masters_title">Bizning Ustalar</h2>
+            <div class="masters-grid">
+                <div class="master-card fade-up">
+                    <div class="master-img">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1000&auto=format&fit=crop" alt="Master Jasurbek">
+                    </div>
+                    <h3>Jasurbek</h3>
+                    <p>Top Master</p>
+                </div>
+                <div class="master-card fade-up delay-1">
+                    <div class="master-img">
+                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1000&auto=format&fit=crop" alt="Master Sardor">
+                    </div>
+                    <h3>Sardor</h3>
+                    <p>Brand Master</p>
+                </div>
+                <div class="master-card fade-up delay-2">
+                    <div class="master-img">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Master Doniyor">
+                    </div>
+                    <h3>Doniyor</h3>
+                    <p>Barber</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <h2 class="section-title center gold">Mijozlerimiz pikirleri</h2>
+            <div class="reviews-grid" id="reviews-container">
+                <!-- Dynamic Reviews -->
+            </div>
+            <div class="center" style="margin-top: 50px; text-align: center;">
+                <button id="add-review-btn" class="btn btn-outline" style="background: transparent;">Pikir qaldırıw</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section map-section" id="map">
+        <div class="container">
+            <h2 class="section-title center white" style="text-align: center; margin-bottom: 40px;">Bizdiń Mánzilimiz</h2>
+            <div class="map-grid glass-card" style="padding: 20px;">
+                <div class="map-info" style="padding: 30px;">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <h3 class="gold" style="font-size: 24px; margin-bottom: 0;">BlackKalpak Studio</h3>
+                        <svg class="scissors-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                            <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                            <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <p style="color: #ccc; margin-bottom: 15px;">Nókis qalası, Shota Rustaveli kóshesi, 57</p>
+                    <div style="border-left: 2px solid var(--primary); padding-left: 20px; margin: 30px 0;">
+                        <p style="margin-bottom: 5px;"><strong>Is waqtı:</strong></p>
+                        <p style="color: #888;">Hár kúni: 10:00 - 22:00</p>
+                    </div>
+                    <div style="border-left: 2px solid var(--primary); padding-left: 20px;">
+                        <p style="margin-bottom: 5px;"><strong>Telefon ushın:</strong></p>
+                        <p style="color: #888;">+998 90 123 45 67</p>
+                    </div>
+                    <button class="btn btn-gold trigger-booking" style="margin-top: 40px; width: 100%;">Bizge qońıraw etiń</button>
+                </div>
+                <div class="map-wrapper" style="border-radius: 12px; overflow: hidden;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2998.0564614682054!2d69.2483866!3d41.2858485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb12502844890a9%3A0x6a2c270d18228189!2zU2hvdGEgUnVzdGF2ZWxpIFN0LCA1NywgVGFzaGtlbnQsIFV6YmVraXN0YW4!5e0!3m2!1sen!2s!4v1711739500000" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-darker" id="contacts">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo-container" style="margin-bottom: 20px;">
+                    <h2 class="logo gold">BlackKalpak</h2>
+                    <svg class="scissors-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                        <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                        <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <p data-key="footer_addr">Nókis qalası, Shota Rustaveli kóshesi, 57</p>
+                <p data-key="footer_hours">Is waqtı: 10:00 - 22:00</p>
+                <p>Tel: +998 90 123 45 67</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-key="footer_links_title">Tezkor havolalar</h4>
+                <a href="#about" data-key="nav_about">Biz haqımızda</a>
+                <a href="#services" data-key="nav_services">Xızmetler</a>
+                <a href="#masters" data-key="nav_masters">Ustalar</a>
+            </div>
+            <div class="footer-social">
+                <h4 data-key="footer_social_title">Bizni kuzating</h4>
+                <div class="social-icons">
+                    <a href="#">Instagram</a>
+                    <a href="#">Telegram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BlackKalpak Barbershop. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2 class="gold">Jaydı band etiw</h2>
+            <form id="booking-form">
+                <div class="input-group">
+                    <label>Xızmetti saylań</label>
+                    <select id="book-service" required>
+                        <option value="Soch turmagi">Erler shash jasawı</option>
+                        <option value="Soqol parvarishi">Saqal kútimi</option>
+                        <option value="Kompleks">Kompleks (Shash + Saqal)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Telefon nomerińiz</label>
+                    <input type="tel" id="book-phone" placeholder="+998 90 123 45 67" required>
+                </div>
+                <div class="input-group">
+                    <label>Waqıt</label>
+                    <input type="datetime-local" id="book-time" required>
+                </div>
+                <button type="submit" class="btn btn-gold" style="width: 100%;">Tastıyıqlaw</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="noti-panel" class="noti-panel glass-card">
+        <h3>Xabarnomalar</h3>
+        <div id="noti-list">
+            <!-- Notifications go here -->
+            <p style="color: #666; font-size: 14px;">Jańa xabarlar joq</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal">
+        <div class="modal-content glass-card" style="max-width: 500px;">
+            <span class="close-modal">&times;</span>
+            <h2 class="gold" style="margin-bottom: 20px;">Pikir qaldırıw</h2>
+            <form id="review-form">
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; color: #888;">Reyting</label>
+                    <select id="rev-rating" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px;">
+                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4)</option>
+                        <option value="3">⭐⭐⭐ (3)</option>
+                        <option value="2">⭐⭐ (2)</option>
+                        <option value="1">⭐ (1)</option>
+                    </select>
+                </div>
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; color: #888;">Sizdiń pikirińiz</label>
+                    <textarea id="rev-text" placeholder="Xızmet haqqında jazıń..." required style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px; color: #fff; border-radius: 8px; height: 100px; font-family: inherit;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold" style="width: 100%;">Jiberiw</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

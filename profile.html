@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meniń Profilim | BlackKalpak Barbershop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-container {
+            padding: 150px 0 100px;
+            min-height: 100vh;
+            background: var(--dark);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .profile-sidebar {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--primary);
+            color: #000;
+            font-size: 40px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .profile-info h2 { margin-bottom: 10px; }
+        .profile-info p { color: #888; font-size: 14px; margin-bottom: 30px; }
+
+        .profile-main {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .history-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item div h4 { color: var(--primary); margin-bottom: 5px; }
+        .history-item div p { color: #666; font-size: 12px; }
+
+        .status { padding: 4px 10px; border-radius: 4px; font-size: 11px; }
+        .status.confirmed { background: rgba(0, 255, 0, 0.1); color: #0f0; }
+        .status.pending { background: rgba(255, 255, 0, 0.1); color: #ff0; }
+
+        @media (max-width: 991px) {
+            .profile-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar scrolled">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">BlackKalpak</div>
+                <svg class="scissors-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="6" cy="6" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                    <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Bas bet</a>
+                <a href="index.html#services">Xızmetler</a>
+            </nav>
+            <div class="actions">
+                <a href="index.html" class="btn btn-outline" style="padding: 10px 20px;">Izge</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="container profile-grid">
+            <div class="profile-sidebar">
+                <div class="profile-avatar" id="avatar-initials">?</div>
+                <div class="profile-info">
+                    <h2 id="p-name">Paydalanıwshı</h2>
+                    <p id="p-email">email@example.com</p>
+                    <div id="p-phone" style="color: var(--primary); font-weight: 600; font-size: 16px; margin-bottom: 30px; letter-spacing: 1px;">+998 00 000 00 00</div>
+                    <button id="logout-profile" class="btn btn-outline" style="width: 100%;">Shıǵıw</button>
+                </div>
+            </div>
+
+            <div class="profile-main">
+                <h3 style="margin-bottom: 30px; font-family: 'Playfair Display', serif;">Buyırtpalar tariyxı</h3>
+                <div id="booking-history">
+                    <p style="color: #666;">Buyırtpalar tabılmadı.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) window.location.href = 'auth.html';
+
+        document.getElementById('p-name').innerText = currentUser.name;
+        document.getElementById('p-email').innerText = currentUser.email;
+        document.getElementById('p-phone').innerText = currentUser.phone || 'Telefon kiritilmegen';
+        document.getElementById('avatar-initials').innerText = currentUser.name.charAt(0).toUpperCase();
+
+        document.getElementById('logout-profile').addEventListener('click', () => {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        });
+
+        // Load History
+        const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        const userBookings = bookings.filter(b => b.userEmail === currentUser.email);
+        const historyList = document.getElementById('booking-history');
+
+        if (userBookings.length > 0) {
+            historyList.innerHTML = userBookings.map(b => `
+                <div class="history-item">
+                    <div>
+                        <h4>${b.service}</h4>
+                        <p>${b.time.replace('T', ' ')}</p>
+                    </div>
+                    <span class="status ${b.status}">${b.status === 'pending' ? 'Kutilmekte' : 'Tastıyıqlanǵan'}</span>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

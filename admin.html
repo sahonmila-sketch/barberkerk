@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | BlackKalpak Barbershop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: var(--darker);
+        }
+
+        .sidebar {
+            width: 280px;
+            background: rgba(0,0,0,0.8);
+            border-right: 1px solid var(--glass-border);
+            padding: 50px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 60px;
+            background: var(--dark);
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid transparent;
+        }
+
+        .nav-item.active, .nav-item:hover {
+            background: var(--glass);
+            color: var(--primary);
+            border-color: var(--glass-border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card h3 {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card p {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .table-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 20px; color: var(--text-muted); font-size: 13px; border-bottom: 1px solid var(--glass-border); text-transform: uppercase; }
+        td { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #fff; font-size: 14px; }
+
+        .status { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+        .status.confirmed { background: rgba(0, 255, 0, 0.1); color: #00ff00; }
+        .status.pending { background: rgba(255, 255, 0, 0.1); color: #ffff00; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">BlackKalpak</div>
+        <a href="#" class="nav-item active" data-view="dashboard">Dashboard</a>
+        <a href="#" class="nav-item" data-view="bookings">Jazılıwlar</a>
+        <a href="#" class="nav-item" data-view="services">Xızmetler</a>
+        <a href="#" class="nav-item" data-view="masters">Ustalar</a>
+        <a href="index.html" class="nav-item">Saytqa qaytıw</a>
+    </div>
+
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <div id="view-dashboard" class="view">
+            <div class="header">
+                <h1>Admin Basqarıwı</h1>
+                <div class="user-info">Admin: Jasurbek</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Jámi buyırtpalar</h3>
+                    <p id="stat-total">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tastıyıqlanǵan</h3>
+                    <p id="stat-confirmed">0</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Jańa jazılıwlar</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mijoz</th>
+                            <th>Telefon</th>
+                            <th>Xizmat</th>
+                            <th>Vaqt</th>
+                            <th>Status</th>
+                            <th>Amallar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-list">
+                        <!-- Content will be dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Placeholder Sections -->
+        <div id="view-bookings" class="view" style="display: none;">
+            <h1>Barcha yozilishlar</h1>
+            <p style="color: #666; margin-top: 20px;">Filtrlar va barcha tarix bu yerda ko'rinadi.</p>
+        </div>
+
+        <div id="view-services" class="view" style="display: none;">
+            <h1>Xizmatlar boshqaruvi</h1>
+            <p style="color: #666; margin-top: 20px;">Yangi xizmat qo'shish yoki narxlarni o'zgartirish.</p>
+        </div>
+
+        <div id="view-masters" class="view" style="display: none;">
+            <h1>Ustalar boshqaruvi</h1>
+            <p style="color: #666; margin-top: 20px;">Ustalar ro'yxati va ularning jadvali.</p>
+        </div>
+    </div>
+
+    <script>
+        // View Switching
+        document.querySelectorAll('.nav-item[data-view]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const view = item.getAttribute('data-view');
+                
+                // Toggle Links
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Toggle Content
+                document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+                document.getElementById('view-' + view).style.display = 'block';
+            });
+        });
+
+        const bookingsList = document.getElementById('bookings-list');
+        const statTotal = document.getElementById('stat-total');
+        const statConfirmed = document.getElementById('stat-confirmed');
+
+        function updateAdminUI() {
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            
+            // Stats (Revenue removed as requested)
+            if (statTotal) statTotal.innerText = bookings.length;
+            if (statConfirmed) statConfirmed.innerText = bookings.filter(b => b.status === 'confirmed').length;
+
+            // Table
+            if (bookingsList) {
+                bookingsList.innerHTML = bookings.length > 0 ? bookings.map((b, i) => `
+                    <tr>
+                        <td>${b.userName}</td>
+                        <td style="color: var(--primary);">${b.userPhone || 'Mavjud emas'}</td>
+                        <td>${b.service}</td>
+                        <td>${b.time.replace('T', ' ')}</td>
+                        <td><span class="status ${b.status}">${b.status === 'pending' ? 'Kutilmekte' : 'Tastıyıqlanǵan'}</span></td>
+                        <td>
+                            ${b.status === 'pending' ? `<button onclick="confirmBooking(${b.id})" class="btn btn-gold" style="padding: 8px 15px; font-size: 11px;">Tastıyıqlaw</button>` : ''}
+                            <button onclick="deleteBooking(${b.id})" class="btn btn-outline" style="padding: 8px 15px; font-size: 11px; margin-left: 5px; color: #ff5555; border-color: rgba(255,0,0,0.3);">X</button>
+                        </td>
+                    </tr>
+                `).join('') : '<tr><td colspan="6" style="text-align: center; color: #666; padding: 40px;">Házirshe buyırtpalar joq</td></tr>';
+            }
+        }
+
+        window.confirmBooking = (id) => {
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const booking = bookings.find(b => b.id === id);
+            if (booking) {
+                booking.status = 'confirmed';
+                localStorage.setItem('bookings', JSON.stringify(bookings));
+                sendNotification(booking.userEmail, `Sizning "${booking.service}" uchun buyurtmangiz tasdiqlandi! Sizni kutib qolamiz.`);
+                updateAdminUI();
+            }
+        };
+
+        window.deleteBooking = (id) => {
+            if (!confirm('Haqıyqattan da óshirmoqshisız ba?')) return;
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings = bookings.filter(b => b.id !== id);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            updateAdminUI();
+        };
+
+        function sendNotification(email, msg) {
+            const nt = JSON.parse(localStorage.getItem('notifications') || '[]');
+            nt.unshift({ email, msg, time: new Date().toLocaleTimeString(), read: false });
+            localStorage.setItem('notifications', JSON.stringify(nt));
+        }
+
+        updateAdminUI();
+    </script>
+</body>
+</html>
