@@ -47,7 +47,8 @@
             </nav>
             <div class="actions">
                 <div id="user-display" style="display: none; align-items: center; gap: 15px;">
-                    <a href="profile.html" id="user-name" style="font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none;"></a>
+                    <a href="admin.html" id="admin-nav-link" class="btn btn-gold" style="padding: 6px 12px; font-size: 11px; display: none;">Admin</a>
+                    <a href="profile.html" id="user-name" class="user-profile-link"></a>
                     <button id="noti-btn" class="noti-btn">🔔<span id="noti-badge">0</span></button>
                     <button id="logout-btn" class="btn btn-outline" style="padding: 6px 12px; font-size: 11px;">Shıǵıw</button>
                 </div>
@@ -120,27 +121,8 @@
     <section class="section services bg-dark" id="services">
         <div class="container">
             <h2 class="section-title center white" data-key="services_title">Bizdiń Xızmetler</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3 data-key="service_1_name">Erler shash jasawı</h3>
-                    <p data-key="service_1_desc">Konkret hám zamanagóy kórinis ushın</p>
-                    <span class="price">150 000 sum</span>
-                </div>
-                <div class="service-card highlighted">
-                    <h3 data-key="service_2_name">Saqal hám murıt kútimi</h3>
-                    <p data-key="service_2_desc">Ideal forma hám kútim</p>
-                    <span class="price">100 000 sum</span>
-                </div>
-                <div class="service-card">
-                    <h3 data-key="service_3_name">Kompleks (Shash + Saqal)</h3>
-                    <p data-key="service_3_desc">Tolıq paket hám arnawlı usınıs</p>
-                    <span class="price">220 000 sum</span>
-                </div>
-                <div class="service-card">
-                    <h3 data-key="service_4_name">Balalar shash jasawı</h3>
-                    <p data-key="service_4_desc">Kishkene miymanlarımız ushın</p>
-                    <span class="price">80 000 sum</span>
-                </div>
+            <div class="services-grid" id="dynamic-services">
+                <!-- Services will be dynamically loaded here by script.js -->
             </div>
         </div>
     </section>
@@ -148,28 +130,8 @@
     <section class="section masters" id="masters">
         <div class="container">
             <h2 class="section-title center gold" data-key="masters_title">Bizning Ustalar</h2>
-            <div class="masters-grid">
-                <div class="master-card fade-up">
-                    <div class="master-img">
-                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1000&auto=format&fit=crop" alt="Master Jasurbek">
-                    </div>
-                    <h3>Jasurbek</h3>
-                    <p>Top Master</p>
-                </div>
-                <div class="master-card fade-up delay-1">
-                    <div class="master-img">
-                        <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1000&auto=format&fit=crop" alt="Master Sardor">
-                    </div>
-                    <h3>Sardor</h3>
-                    <p>Brand Master</p>
-                </div>
-                <div class="master-card fade-up delay-2">
-                    <div class="master-img">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Master Doniyor">
-                    </div>
-                    <h3>Doniyor</h3>
-                    <p>Barber</p>
-                </div>
+            <div class="masters-grid" id="dynamic-masters">
+                <!-- Masters will be dynamically loaded here by script.js -->
             </div>
         </div>
     </section>
@@ -182,6 +144,15 @@
             </div>
             <div class="center" style="margin-top: 50px; text-align: center;">
                 <button id="add-review-btn" class="btn btn-outline" style="background: transparent;">Pikir qaldırıw</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title center white" style="text-align: center; margin-bottom: 50px;">Bizdiń Jumıslarımız</h2>
+            <div class="gallery-grid" id="dynamic-gallery">
+                <!-- Gallery items will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -264,9 +235,13 @@
                 <div class="input-group">
                     <label>Xızmetti saylań</label>
                     <select id="book-service" required>
-                        <option value="Soch turmagi">Erler shash jasawı</option>
-                        <option value="Soqol parvarishi">Saqal kútimi</option>
-                        <option value="Kompleks">Kompleks (Shash + Saqal)</option>
+                        <!-- Loaded dynamically -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Ustanı saylań</label>
+                    <select id="book-master" required>
+                        <!-- Loaded dynamically -->
                     </select>
                 </div>
                 <div class="input-group">

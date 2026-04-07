@@ -108,6 +108,7 @@
                     <h2 id="p-name">Paydalanıwshı</h2>
                     <p id="p-email">email@example.com</p>
                     <div id="p-phone" style="color: var(--primary); font-weight: 600; font-size: 16px; margin-bottom: 30px; letter-spacing: 1px;">+998 00 000 00 00</div>
+                    <a href="admin.html" id="admin-panel-link" class="btn btn-gold" style="width: 100%; margin-bottom: 15px; display: none; text-align: center;">Admin Panel</a>
                     <button id="logout-profile" class="btn btn-outline" style="width: 100%;">Shıǵıw</button>
                 </div>
             </div>
@@ -130,6 +131,10 @@
         document.getElementById('p-phone').innerText = currentUser.phone || 'Telefon kiritilmegen';
         document.getElementById('avatar-initials').innerText = currentUser.name.charAt(0).toUpperCase();
 
+        if (currentUser.role === 'admin') {
+            document.getElementById('admin-panel-link').style.display = 'block';
+        }
+
         document.getElementById('logout-profile').addEventListener('click', () => {
             localStorage.removeItem('currentUser');
             window.location.href = 'index.html';
@@ -144,7 +149,7 @@
             historyList.innerHTML = userBookings.map(b => `
                 <div class="history-item">
                     <div>
-                        <h4>${b.service}</h4>
+                        <h4>${b.service} <span style="font-size:12px; color:var(--primary); font-weight:normal;">(${b.master || 'Usta saylanbaǵan'})</span></h4>
                         <p>${b.time.replace('T', ' ')}</p>
                     </div>
                     <span class="status ${b.status}">${b.status === 'pending' ? 'Kutilmekte' : 'Tastıyıqlanǵan'}</span>

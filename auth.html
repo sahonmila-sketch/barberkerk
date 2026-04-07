@@ -103,6 +103,26 @@
             background: rgba(197, 160, 89, 0.05);
         }
 
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            font-size: 16px;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary);
+        }
+
         .auth-btn {
             width: 100%;
             margin-top: 10px;
@@ -140,7 +160,10 @@
                 </div>
                 <div class="input-group">
                     <label>Parol</label>
-                    <input type="password" id="login-password" placeholder="••••••••" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                        <span class="toggle-password" onclick="togglePassword('login-password', this)">👁️</span>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-gold auth-btn">Kirisiw</button>
             </form>
@@ -161,7 +184,10 @@
                 </div>
                 <div class="input-group">
                     <label>Parol</label>
-                    <input type="password" id="reg-password" placeholder="••••••••" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="reg-password" placeholder="••••••••" required>
+                        <span class="toggle-password" onclick="togglePassword('reg-password', this)">👁️</span>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-gold auth-btn">Dizimnen ótiw</button>
             </form>
@@ -177,6 +203,18 @@
         const tabRegister = document.getElementById('tab-register');
         const loginForm = document.getElementById('login-form');
         const registerForm = document.getElementById('register-form');
+
+        // Toggle Password Visibility
+        function togglePassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerText = '👁️‍🗨️'; // Change icon to indicate visible
+            } else {
+                input.type = 'password';
+                icon.innerText = '👁️'; // Change icon to indicate hidden
+            }
+        }
 
         // Toggle Tabs
         tabLogin.addEventListener('click', () => {

@@ -93,6 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
         userDisplay.style.display = 'flex';
         authActions.style.display = 'none';
         userNameEl.innerText = currentUser.name;
+        
+        if (currentUser.role === 'admin') {
+            const adminNavLink = document.getElementById('admin-nav-link');
+            if (adminNavLink) adminNavLink.style.display = 'block';
+        }
     }
 
     logoutBtn.addEventListener('click', () => {
@@ -116,6 +121,84 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langQr) langQr.addEventListener('click', () => setLanguage('qr'));
     if (langRu) langRu.addEventListener('click', () => setLanguage('ru'));
     setLanguage(localStorage.getItem('preferredLang') || 'qr');
+
+    // Default Data Initialization
+    if (!localStorage.getItem('services')) {
+        localStorage.setItem('services', JSON.stringify([
+            { id: 1, name: "Erler shash jasawı", desc: "Konkret hám zamanagóy kórinis ushın", price: "150 000 sum" },
+            { id: 2, name: "Saqal hám murıt kútimi", desc: "Ideal forma hám kútim", price: "100 000 sum" },
+            { id: 3, name: "Kompleks (Shash + Saqal)", desc: "Tolıq paket hám arnawlı usınıs", price: "220 000 sum" },
+            { id: 4, name: "Balalar shash jasawı", desc: "Kishkene miymanlarımız ushın", price: "80 000 sum" }
+        ]));
+    }
+
+    if (!localStorage.getItem('masters')) {
+        localStorage.setItem('masters', JSON.stringify([
+            { id: 1, name: "Jasurbek", role: "Top Master", image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1000&auto=format&fit=crop" },
+            { id: 2, name: "Sardor", role: "Brand Master", image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1000&auto=format&fit=crop" },
+            { id: 3, name: "Doniyor", role: "Barber", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" }
+        ]));
+    }
+
+    if (!localStorage.getItem('gallery')) {
+        localStorage.setItem('gallery', JSON.stringify([
+            { id: 1, image: "https://images.unsplash.com/photo-1593702295094-272a9f44503f?q=80&w=1000&auto=format&fit=crop" },
+            { id: 2, image: "https://images.unsplash.com/photo-1532710093739-9470acff878f?q=80&w=1000&auto=format&fit=crop" },
+            { id: 3, image: "https://images.unsplash.com/photo-1622286332618-f27bd7f1c719?q=80&w=1000&auto=format&fit=crop" },
+            { id: 4, image: "https://images.unsplash.com/photo-1590540179852-2110a54f813a?q=80&w=1000&auto=format&fit=crop" },
+            { id: 5, image: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1000&auto=format&fit=crop" },
+            { id: 6, image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1000&auto=format&fit=crop" }
+        ]));
+    }
+
+    // Render Data on Index Page
+    const dynServices = document.getElementById('dynamic-services');
+    const dynMasters = document.getElementById('dynamic-masters');
+    const dynGallery = document.getElementById('dynamic-gallery');
+    const bookValSvc = document.getElementById('book-service');
+    const bookValMst = document.getElementById('book-master');
+
+    const services = JSON.parse(localStorage.getItem('services') || '[]');
+    const masters = JSON.parse(localStorage.getItem('masters') || '[]');
+    const galleryItems = JSON.parse(localStorage.getItem('gallery') || '[]');
+
+    if (dynServices) {
+        dynServices.innerHTML = services.map(s => `
+            <div class="service-card">
+                <h3>${s.name}</h3>
+                <p>${s.desc}</p>
+                <span class="price">${s.price}</span>
+            </div>
+        `).join('');
+    }
+
+    if (dynMasters) {
+        dynMasters.innerHTML = masters.map((m, i) => `
+            <div class="master-card fade-up delay-${i}">
+                <div class="master-img">
+                    <img src="${m.image}" alt="Master ${m.name}">
+                </div>
+                <h3>${m.name}</h3>
+                <p>${m.role}</p>
+            </div>
+        `).join('');
+    }
+
+    if (dynGallery) {
+        dynGallery.innerHTML = galleryItems.map(item => `
+            <div class="gallery-item fade-up">
+                <img src="${item.image}" alt="Work Photo">
+            </div>
+        `).join('');
+    }
+
+    if (bookValSvc) {
+        bookValSvc.innerHTML = services.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
+    }
+
+    if (bookValMst) {
+        bookValMst.innerHTML = masters.map(m => `<option value="${m.name}">${m.name}</option>`).join('');
+    }
 
     // Modal Elements Safe Selectors
     const bookingModal = document.getElementById('booking-modal');
@@ -235,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const service = document.getElementById('book-service').value;
+            const master = document.getElementById('book-master').value;
             const time = document.getElementById('book-time').value;
             const phone = document.getElementById('book-phone').value;
 
@@ -244,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 userName: currentUser.name,
                 userPhone: phone,
                 service,
+                master,
                 time,
                 status: 'pending'
             };
